@@ -25,17 +25,18 @@ public:
             if(valid(bank[i],start)){
                 dist[i]=1;
                 q.push(i);
+                vis[i]=1;
             }
         }
         bool b =false;
         while(!q.empty()){
             int par = q.front();q.pop();
-            vis[par]  = 1;
             cout<<bank[par]<<" ";
             if(bank[par]==end){b=true;break;}
             for(int nbrs:gr[par]){
                 if(vis[nbrs]==1){continue;}
-                dist[nbrs]=min(1+dist[par],dist[nbrs]);
+                dist[nbrs]=1+dist[par];
+                vis[nbrs]=1;
                 q.push(nbrs);
             }
         }
