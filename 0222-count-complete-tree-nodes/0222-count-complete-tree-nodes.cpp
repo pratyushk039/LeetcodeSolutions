@@ -11,8 +11,22 @@
  */
 class Solution {
 public:
+    int height(TreeNode* root){
+        if(root==NULL){return 0;}
+        return 1+max(height(root->left),height(root->right));
+    }
+    void Last(TreeNode* root, int h,int ht,int &last){
+        if(root==NULL){return ;}
+        if(ht==h){last+=1;}
+        Last(root->left,h,ht+1,last);
+        Last(root->right,h,ht+1,last);
+        return;
+    }
     int countNodes(TreeNode* root) {
         if(root==NULL){return 0;}
-        return 1+countNodes(root->left)+countNodes(root->right);
+        int h = height(root);
+        int last =0;
+        Last(root,h,1,last);
+        return pow(2,h-1)-1+last;
     }
 };
