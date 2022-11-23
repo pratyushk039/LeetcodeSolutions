@@ -1,6 +1,7 @@
 
 class Solution {
 public:
+    //very messy!!
     bool util(int x,vector<vector<char>>& board){
         unordered_map<char,int> umap1;
         //row
