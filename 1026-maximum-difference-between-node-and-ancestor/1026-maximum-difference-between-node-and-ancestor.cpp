@@ -16,7 +16,7 @@ public:
     Solution(){
         ans= -INT_MAX;
     }
-    void dfs(TreeNode* root,vector<int>v){
+    void dfs(TreeNode* root,vector<int>&v){
         if(root==NULL){return;}
         if(v.size()==0){v.pb(root->val);dfs(root->left,v);dfs(root->right,v);return;}
         int x = root->val;
@@ -25,6 +25,7 @@ public:
         }
         v.pb(x);
         dfs(root->left,v);dfs(root->right,v);
+        v.pop_back();
     }
     int maxAncestorDiff(TreeNode* root) {
         vector<int> v;
