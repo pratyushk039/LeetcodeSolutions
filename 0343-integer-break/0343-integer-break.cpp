@@ -1,3 +1,4 @@
+vector<int> dp(59,-1); //it should be usable for all test cases.
 class Solution {
 public:
     int util(int n,vector<int>&dp){
@@ -11,7 +12,6 @@ public:
         return dp[n]=ans;
     }
     int integerBreak(int n) {
-        vector<int> dp(59,-1);
         int ans = -INT_MAX;
         for(int i=1;i<n;i++){
             ans=max(ans,util(n-i,dp)*util(i,dp));
