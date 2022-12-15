@@ -22,7 +22,7 @@ public:
         }
         int par = find(1);
         for(auto vec:roads){
-            if(find(vec[0])==par || find(vec[1])==par){ans=min(ans,vec[2]);}
+            if(find(vec[0])==par){ans=min(ans,vec[2]);}
         }
         return ans;
     }
