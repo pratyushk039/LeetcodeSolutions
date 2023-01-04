@@ -4,6 +4,7 @@ class Solution {
 public:
     int minimumRounds(vector<int>& tasks) {
         if(k){
+            k=false;
             dp[1]=INT_MAX;
             dp[2]=1;dp[3]=1;
             for(int i=4;i<=1e5;i++){
