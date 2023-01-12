@@ -25,7 +25,7 @@ public:
         return;
         
     }
-    vector<int> countSubTrees(int n, vector<vector<int>>& edges, string labels) {
+    vector<int> countSubTrees(int n, vector<vector<int>>& edges, string &labels) {
         vector<int>ans(n);
         um map;
         vector<vector<int>>gr(n);
