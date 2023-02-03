@@ -1,3 +1,4 @@
+//WOW !!!!!!!!!!!!! PATIENCE SOLVES THESE PATTERN PROBLEMS!!
 class Solution {
 public:
     string convert(string s, int numRows) {
