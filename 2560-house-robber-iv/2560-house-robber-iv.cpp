@@ -1,8 +1,7 @@
 class Solution {
 public:
     int minCapability(vector<int>& nums, int k) {
-        int n =nums.size(),hi=*max_element(nums.begin(),nums.end()),lo=*min_element(nums.begin(),nums.end());
-        vector<int> vec = nums;sort(vec.begin(),vec.end());
+        int n =nums.size(),hi=1e9,lo=1;
         while(lo<=hi){
             int mid = (lo+hi)/2,temp=0;
             for(int i=0;i<n;i++){
