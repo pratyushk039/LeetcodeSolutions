@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int toNum(string s){
+    int toNum(string &s){
         int p=0;
         int n=s.size();
         reverse(s.begin(),s.end());
@@ -16,7 +16,8 @@ public:
         vector<vector<int>> ans(q.size());
         for(int size=1;size<=min(30,n);size++){
             for(int i=0;i<=n-size;i++){
-                int subs = toNum(s.substr(i,size));
+                string arg = s.substr(i,size);
+                int subs = toNum(arg);
                 if(map.find(subs)==map.end()){map[subs]={i,i+size-1};}
                 //cout<<subs<<" -> "<<map[subs][0]<<" "<<map[subs][1]<<endl;
                 
