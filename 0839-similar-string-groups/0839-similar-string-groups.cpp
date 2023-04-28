@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //UnionFind struck me sooo quick XD :)
     vector<int> parent,rank;
     int n;
     int find(int x){
