@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //i thought about what would happen if there was a 1 in the AND score. dividing that stream of 1's would result in an additional power of 2 added to the score. so if the score is non-zero, we have to take the whole array. thus return 1.
     int maxSubarrays(vector<int>& nums) {
         int n = nums.size();
         int score =-1;
