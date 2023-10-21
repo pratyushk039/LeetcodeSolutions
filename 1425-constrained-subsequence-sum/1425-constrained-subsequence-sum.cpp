@@ -1,5 +1,9 @@
 class Solution {
 public:
+    //thought process : seems like a classic dp problem, but constraint would be O(nk).
+    //dp[i] = max sum we can obtain if we include nums[i] in our subsequence.
+    //then , a simple optimization arised that we store the max(dp[j]) ;i<j<=i+k using a monotonic
+    //queue!
     int constrainedSubsetSum(vector<int>& nums, int k) {
         deque<pair<int,int>> dq;
         int n = nums.size(),ans = nums[n-1];
