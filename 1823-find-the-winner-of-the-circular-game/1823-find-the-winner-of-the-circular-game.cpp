@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //why didnt i think of a queue :(
     int findTheWinner(int n, int k) {
         vector<int>v;
         for(int i=1;i<=n;i++)v.push_back(i);
