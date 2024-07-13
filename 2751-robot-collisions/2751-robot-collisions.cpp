@@ -1,55 +1,36 @@
 class Solution {
 public:
-    //stack,greedy
-    static bool comp(vector<int>&a, vector<int>&b){
-        return a[0]<b[0];
-    }
-    static bool comp2(vector<int>&a, vector<int>&b){
-        return a[3]<b[3];
-    }
-    vector<int> survivedRobotsHealths(vector<int>& pos, vector<int>& hts, string drs) {
-        //L=-1,R=1; --> Right is the positive direction.
+    vector<int> survivedRobotsHealths(vector<int>& pos, vector<int>& hts, string dts) {
         int n = pos.size();
-        vector<vector<int>> sck(n,vector<int>(4,-1));
-        for(int i=0;i<n;i++){
-            sck[i][0]=pos[i];
-            sck[i][1]=hts[i];
-            sck[i][2]= (drs[i]=='L'?-1:1);
-            sck[i][3]=i; // original index.
-        }
-        sort(sck.begin(),sck.end(),comp);
+        vector<vector<int>> arr(n);
         stack<vector<int>> s;
+        
         for(int i=0;i<n;i++){
-            if(s.size()==0){s.push(sck[i]);continue;}
-            
-            auto prev = s.top();
-            auto curr = sck[i];
-            if(curr[2]==-1 && prev[2]==1){
-                vector<int> temp(4);
-                bool b = false;
-                while(curr[2]==-1 && prev[2]==1){
-                    s.pop();
-                    if(curr[1]==prev[1]){b=true;break;}
-                    if(curr[1]>prev[1]){temp = {curr[0],curr[1]-1,-1,curr[3]};}
-                    else{temp = {prev[0],prev[1]-1,1,prev[3]};}
-                    curr=temp;
-                    if(s.size()>0)prev = s.top();
-                    else break;
-                }
-                if(!b)s.push(curr);
-            }
-            else{
-                s.push(curr);
-            }
+            int x ;
+            if(dts[i]=='L')x=0;
+            else x=1;
+            arr[i] = {pos[i],hts[i],x,i};
         }
-        vector<vector<int>> ans1;
+        sort(arr.begin(),arr.end());
+        s.push(arr[0]);
+        for(int i=1;i<n;i++){
+            if(arr[i][2]==1){s.push(arr[i]);continue;}
+            int curr_h = arr[i][1];
+            bool push=true;
+            while(!s.empty() && s.top()[2]==1){
+                if(curr_h>s.top()[1]){s.pop();curr_h-=1;arr[i][1]-=1;}
+                else if(curr_h<s.top()[1]){s.top()[1]-=1;push=false;break;}
+                else{s.pop();push=false;break;}
+            }
+            if(push)s.push(arr[i]);
+        }
+        
+        arr.clear();
         vector<int> ans;
-        while(!s.empty()){
-            auto temp = s.top();s.pop();
-            ans1.push_back(temp);
-        }
-        sort(ans1.begin(),ans1.end(),comp2);
-        for(auto k:ans1){ans.push_back(k[1]);}
+        while(!s.empty()){arr.push_back({s.top()[3],s.top()[1]});s.pop();}sort(arr.begin(),arr.end());
+        
+        for(auto v:arr){ans.push_back(v[1]);}
         return ans;
+        
     }
 };
