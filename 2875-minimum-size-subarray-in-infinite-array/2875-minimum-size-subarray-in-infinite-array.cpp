@@ -26,14 +26,13 @@ public:
         vector<int> nums1(2*n);
         for(int i=0;i<2*n;i++){nums1[i]=nums[i%n];}
         for(auto x:nums){sum+=x;}
-        if(sum==target){return n;}
         if(sum>target){return solve(nums1,target,0);}
         
         if(target%sum==0){return n*(target/sum);}
         
-        int x = solve(nums1,sum - target%sum,1);
+        int x = solve(nums1,target%sum,0);
         
-        return x==-1?-1:n*(target/sum) + n-x;
+        return x==-1?-1:n*(target/sum) + x;
         
     }
 };
