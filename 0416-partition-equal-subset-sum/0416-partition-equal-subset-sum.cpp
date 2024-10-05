@@ -10,9 +10,11 @@ public:
         for(int i=0;i<n;i++){dp[i][0]=true;}
         if(nums[0]<=sum)dp[0][nums[0]]=true;
         for(int i=1;i<n;i++){
-            for(int j=0;j<sum+1;j++){
+            for(int j=1;j<sum+1;j++){
                 dp[i][j] = dp[i][j]||dp[i-1][j];
-                if(dp[i-1][j]&&(nums[i]+j<=sum)){dp[i][nums[i]+j]=true;}
+                if(nums[i]<=j){
+                    dp[i][j] = (dp[i-1][j-nums[i]])||(dp[i-1][j]);
+                }
             }
         }
         return dp[n-1][sum];
